@@ -10,8 +10,7 @@ export class HomePage {
   constructor(public navCtrl: NavController, public menu: MenuController) { }
 
   ionViewWillEnter() {
-    this.menu.swipeEnable(false);
-  
+    this.menu.swipeEnable(false);  
   }
 
   ionViewDidLeave() {
