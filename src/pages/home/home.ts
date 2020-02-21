@@ -17,8 +17,8 @@ export class HomePage {
   constructor(
     public navCtrl: NavController, 
     public menu: MenuController,
-    public auth: AuthService){
-  }
+    public auth: AuthService
+    ){ }
 
   ionViewWillEnter() {
     this.menu.swipeEnable(false);  
@@ -29,13 +29,15 @@ export class HomePage {
   }
 
   ionViewDidEnter(){
-    this.auth.refreshToken()
-    .subscribe(response => {
-      this.auth.successfullLogin(response.headers.get('Authorization'));
-      //console.log(response.headers.get('Authorization'));
-      this.navCtrl.setRoot('CategoriasPage');
-    },
-    error => {}); 
+    if (this.creds.email != "" && this.creds.senha != ""){
+        this.auth.refreshToken()
+        .subscribe(response => {
+          this.auth.successfullLogin(response.headers.get('Authorization'));
+          //console.log(response.headers.get('Authorization'));
+          this.navCtrl.setRoot('CategoriasPage');
+        },
+        error => {}); 
+    }
   }
 
   login(){

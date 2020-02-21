@@ -13,32 +13,35 @@ export class ErrorInterceptor implements HttpInterceptor {
         ){}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        //console.log('Passou no interceptor');
+
         return next.handle(req)
-        .catch((error, caught) => {
+        .catch((error, _caugh) => {
             
             let errorObj = error;
 
             if (errorObj.error){
                 errorObj = errorObj.error;
-            }         
-            
-            /*if(errorObj.status){
+            }
+
+            if(!errorObj.status){
                 errorObj = JSON.parse(errorObj);
-            }*/
+            }
 
             switch(errorObj.status){
-                case 401: 
+                
+                case 401:
                     this.handle401();
                     break;
+                
                 case 403: 
                     this.handle403();
                     break;
+
                 default:
                     this.handleDefaultError(errorObj);
                     break;
             }
-            
+                             
             console.log('Erro detectado pelo interceptor');
             console.log(errorObj);
 
@@ -47,20 +50,20 @@ export class ErrorInterceptor implements HttpInterceptor {
         }) as any;
     }
 
-    handle401(){    
+    handle401(){  
         let alert = this.alertCtrl.create({
             title: 'Erro 401: falha de autenticação',
             message: 'Email ou senha incorretos',
-            enableBackdropDismiss: false,
+            enableBackdropDismiss: true,
             buttons: [{ text:'OK'}]
         }) 
         alert.present();
         this.storage.setLocalUser(null);
     }
 
-    handle403(){ 
-        this.storage.setLocalUser(null);
+    handle403(){
         console.log('Passou no handle403');
+        this.storage.setLocalUser(null);
     }
 
     handleDefaultError(errorObj){
