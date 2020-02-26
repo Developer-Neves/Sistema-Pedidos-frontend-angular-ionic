@@ -29,7 +29,10 @@ export class CategoriasPage {
       //console.log(response);
     },
     error => {});
+  }
 
+  showProdutos(){
+    this.navCtrl.push('ProdutosPage');
   }
 
 }
