@@ -68,6 +68,13 @@ export class ErrorInterceptor implements HttpInterceptor {
 
     handle403(){
         console.log('Passou no handle403');
+            let alert = this.alertCtrl.create({
+                title: 'Email ou senha incorretos',
+                message: 'Erro 403: falha de autenticação',
+                enableBackdropDismiss: true,
+                buttons: [{ text:'OK'}]
+            })
+            alert.present();
         this.storage.setLocalUser(null);
     }
 
