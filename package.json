@@ -14,7 +14,7 @@
     "@angular/animations": "5.2.11",
     "@angular/common": "5.2.11",
     "@angular/compiler": "5.2.11",
-    "@angular/compiler-cli": "^9.0.5",
+    "@angular/compiler-cli": "^9.1.0",
     "@angular/core": "5.2.11",
     "@angular/forms": "5.2.11",
     "@angular/http": "^7.2.16",
@@ -36,6 +36,7 @@
     "zone.js": "0.8.29"
   },
   "devDependencies": {
+    "@angular/cli": "^9.1.0",
     "@ionic/app-scripts": "3.2.4",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
